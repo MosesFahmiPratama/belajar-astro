@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import SpecialButton from '../components/SpecialButtons/special-button.jsx'
+import SpecialButton2 from '../components/SpecialButtons/special-button.svelte'
+const iniJudul = 'Components'
+---
+ 
+<BaseLayout title={iniJudul} />
+  <h1>{iniJudul}</h1>
+  <SpecialButton client:load>Click Me</SpecialButton>
+  <SpecialButton2 client:load>Click Me2</SpecialButton2>
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+const { page } = Astro.props;
+---
+<div class="pagination">
+  {page.url.prev && <a href={page.url.prev} title="go to previues">&larr; prev</a>}
+  {page.url.next && <a href={page.url.next} title="go to next">next &rarr;</a>}
+</div>
+
+<style>
+.pagination {
+  display: inline-block;
+  padding: 10px;
+}
+</style>
