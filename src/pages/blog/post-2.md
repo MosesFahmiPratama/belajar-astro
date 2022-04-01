@@ -5,6 +5,9 @@ title: Example Blog 2
 description: Ini adalah contoh Blog 2
 date: 2022-03-26
 author: "Moses Fahmi Pratama"
+categories:
+  - Astro
+  - Web Development
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero harum, magnam optio aut iste, reiciendis, dolore ad nesciunt ducimus natus, asperiores temporibus quia et assumenda deserunt aperiam aliquid exercitationem pariatur.

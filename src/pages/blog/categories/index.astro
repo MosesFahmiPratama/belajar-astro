@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import {generateCategoryData} from '../../../utils/helper.js'
+const allPosts = Astro.fetchContent('../*.md');
+const allCategoriesUnique = new Set();
+
+allPosts.map(post => {
+  post.categories && post.categories.map(category => {
+    allCategoriesUnique.add(category);
+  })
+})
+
+const allCategoriesData = generateCategoryData(allCategoriesUnique);
+
+console.log(allCategoriesData);
+
+const iniJudul = 'Blog Categories'
+//const {page} = Astro.props;
+---
+ 
+<BaseLayout title={iniJudul} />
+  <h1>{iniJudul}</h1>
+  <ul>
+    {allCategoriesData.map(category => (
+      <li><a href={`/blog/categories/${category.slug}`}>{category.name}</a></li>
+    ))}
+  </ul>
+
+</BaseLayout>

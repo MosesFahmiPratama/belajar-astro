@@ -1,0 +1,45 @@
+---
+// Component imports and setup JavaScript go here!
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import {generateCategoryData} from '../../../utils/helper.js'
+
+export async function getStaticPaths() {
+  const allPosts = Astro.fetchContent('../*.md');
+  const sortedPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+  const allCategoriesUnique = new Set();
+  sortedPosts.forEach(post => {
+    post.categories && post.categories.map(category => {
+      allCategoriesUnique.add(category);
+    })
+  })
+  const allCategoriesData = generateCategoryData(allCategoriesUnique);
+   // map through the categories array
+  return allCategoriesData.map((category) => {
+    // filter the posts that match the given category
+    const posts = sortedPosts.filter((post) => post.category.name)
+   const post = include(category.name)
+    console.log(posts)
+      return {
+      params: {slug: category.slug}, 
+      props: {
+        category: category.name, 
+        posts: posts
+      }
+    };
+  });
+}
+
+const {category, posts} = Astro.props;
+const title = `Blog Posts Tagged with ${category}`
+---
+
+<BaseLayout title={title}>
+  <div>
+    <h1>{title}</h1>
+    <ul>
+      {posts.map(post => (
+        <li><a href={post.url}>{post.title}</a></li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
